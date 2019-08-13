@@ -114,39 +114,40 @@ class MTDrawer extends StatelessWidget {
     return Column(
       children: <Widget>[
         ClipRRect(
-            borderRadius: BorderRadius.circular(
-              S.w(10),
-            ),
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  width: S.w(260),
-                  height: S.h(20),
-                  child: LinearProgressIndicator(
-                    value: value,
-                    backgroundColor: Color(MTColors.LIGHT),
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      color,
-                    ),
+          borderRadius: BorderRadius.circular(
+            S.w(10),
+          ),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                width: S.w(260),
+                height: S.h(20),
+                child: LinearProgressIndicator(
+                  value: value,
+                  backgroundColor: Color(MTColors.LIGHT),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    color,
                   ),
                 ),
-                Positioned(
-                  child: Container(
-                    width: S.w(260),
-                    height: S.h(20),
-                    child: Center(
-                      child: Text(
-                        '$min/$max',
-                        style: TextStyle(
-                          fontSize: S.sp(12),
-                          color: Color(MTColors.DEFAULT_TEXT),
-                        ),
+              ),
+              Positioned(
+                child: Container(
+                  width: S.w(260),
+                  height: S.h(20),
+                  child: Center(
+                    child: Text(
+                      '$min/$max',
+                      style: TextStyle(
+                        fontSize: S.sp(12),
+                        color: Color(MTColors.DEFAULT_TEXT),
                       ),
                     ),
                   ),
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
         SizedBox(
           height: S.h(16),
         ),
