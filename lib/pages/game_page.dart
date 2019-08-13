@@ -6,7 +6,30 @@ class GamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: Text('game'),),
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            Text(
+              '0xFF24292E',
+              style: TextStyle(
+                color: Color(0xFFFFCFE2),
+              ),
+            ),
+            Text(
+              '0xFF42464b',
+              style: TextStyle(
+                color: Color(0xFF42464b),
+              ),
+            ),
+            Text(
+              '0xFF121917',
+              style: TextStyle(
+                color: Color(0xFF121917),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

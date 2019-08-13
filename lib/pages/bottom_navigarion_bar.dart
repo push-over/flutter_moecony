@@ -60,10 +60,14 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(_navigationBar[_currentIndex]['title']),
+        title: Text(
+          _navigationBar[_currentIndex]['title'],
+          style: TextStyle(
+            color: Color(MTColors.LIGHT),
+          ),
+        ),
         elevation: 0.0,
       ),
-
       drawer: MTDrawer(),
       body: PageView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -91,12 +95,14 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
           });
         }
       },
-      items: _navigationBar.map(
-        (item) => BottomNavigationBarItem(
-          title: Text(item['title']),
-          icon: Icon(item['icon']),
-        ),
-      ).toList(),
+      items: _navigationBar
+          .map(
+            (item) => BottomNavigationBarItem(
+              title: Text(item['title']),
+              icon: Icon(item['icon']),
+            ),
+          )
+          .toList(),
     );
   }
 }
