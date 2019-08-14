@@ -5,9 +5,12 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
+import 'package:flutter_moecony/common/utils/navigator_utils.dart';
 
 import 'package:flutter_moecony/widget/flex_button.dart';
 import 'package:flutter_moecony/widget/spinkit.dart';
+
+import 'package:flutter_moecony/pages/select_line_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -39,6 +42,10 @@ class _LoginPageState extends State<LoginPage> {
         if (mounted) {
           setState(() {
             _isLoading = false;
+            NavigatorUtils.NavigatorRouter(
+              context,
+              SelectLinePage(),
+            );
           });
         }
       });
