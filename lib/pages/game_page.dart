@@ -35,7 +35,6 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
     if (mounted) {
       setState(() {
         _currentIndex = _tabController.index;
-        print(_currentIndex);
       });
     }
   }

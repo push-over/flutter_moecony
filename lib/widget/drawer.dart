@@ -5,6 +5,8 @@ import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
 
+import 'package:flutter_moecony/widget/cached_network_image.dart';
+
 class MTDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -82,8 +84,8 @@ class MTDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   ClipOval(
-                    child: Image.network(
-                      MTIcons.DEFAULT_REMOTE_PIC,
+                    child: MTCacheNetworkImageWidget(
+                      url: MTIcons.DEFAULT_REMOTE_PIC,
                       width: S.w(100),
                       height: S.w(100),
                     ),

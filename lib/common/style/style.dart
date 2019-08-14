@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_moecony/common/config/config.dart';
-import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
 
 abstract class MTColors {
   static const int PRIMARY_VALUE = 0xFFFFCFE2;
@@ -32,13 +31,11 @@ abstract class MTColors {
   /// #000000 选择线路
   /// #444444 登陆时间
   /// #F11010 登记颜色
-
-
-
 }
 
 abstract class MTIcons {
-  static const String DEFAULT_REMOTE_PIC = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4259300811,497831842&fm=26&gp=0.jpg";
+  static const String DEFAULT_REMOTE_PIC =
+      "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4259300811,497831842&fm=26&gp=0.jpg";
 
   /// BottomNavigationBar
   static const IconData GAME =
@@ -58,6 +55,15 @@ abstract class MTConstant {
   static const double MIDDLE_SIZE = 16.0;
   static const double SMALL_SIZE = 14.0;
   static const double MIN_SIZE = 12.0;
+
+  static Widget APPBAR(Widget widget) {
+    return AppBar(
+      title: widget,
+      iconTheme: IconThemeData(
+        color: Color(MTColors.LIGHT),
+      ),
+    );
+  }
 
   /// DEFAULT_TEXT
   static const MIN_DEFAULT_TEXT = TextStyle(

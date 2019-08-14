@@ -59,14 +59,11 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
+      appBar: MTConstant.APPBAR(
+        Text(
           _navigationBar[_currentIndex]['title'],
-          style: TextStyle(
-            color: Color(MTColors.LIGHT),
-          ),
+          style: MTConstant.MIDDLE_WHITE_TEXT,
         ),
-        elevation: 0.0,
       ),
       drawer: MTDrawer(),
       body: PageView.builder(
