@@ -6,8 +6,10 @@ class MTTextField extends StatefulWidget {
   final bool obscureText;
   final String hintText;
   final IconData iconData;
+  final IconData prefixIcon;
   final bool border;
   final ValueChanged onChanged;
+  final bool filled;
   final TextEditingController controller;
 
   MTTextField(
@@ -15,7 +17,9 @@ class MTTextField extends StatefulWidget {
       this.obscureText = false,
       this.hintText,
       this.iconData,
-      this.border,
+      this.prefixIcon,
+      this.border = false,
+      this.filled = true,
       this.onChanged,
       @required this.controller})
       : super(key: key);
@@ -35,8 +39,17 @@ class _MTTextFieldState extends State<MTTextField> {
       cursorWidth: S.w(8),
       cursorRadius: Radius.elliptical(2, 8),
       decoration: InputDecoration(
-        border: InputBorder.none,
+        border: widget.border
+            ? OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.pink,
+                ),
+              )
+            : InputBorder.none,
         hintText: widget.hintText,
+        prefixIcon: widget.prefixIcon == null ? null : Icon(widget.prefixIcon),
+        fillColor: Color(MTColors.LIGHT),
+        filled: widget.filled,
         hintStyle: TextStyle(
           color: Color(0xFFADADAD),
           fontSize: MTConstant.MIN_SIZE,
