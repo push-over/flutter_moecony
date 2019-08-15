@@ -18,6 +18,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _formKey;
+  FocusNode _accountfocusNode, _passwordfocusNode;
   bool _isLoading, _isCheck;
   String _account, _password;
 
@@ -27,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
     _formKey = GlobalKey<FormState>();
     _isCheck = false;
     _isLoading = false;
+    _accountfocusNode = FocusNode();
+    _passwordfocusNode = FocusNode();
   }
 
   void _handleSubmit() {
@@ -60,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: <Widget>[
               _buildMtLogo(),
-              _buildForm(),
+              _buildForm(store),
               _buildRememberPassword(),
               _buildLoginButton(context, store),
             ],
@@ -115,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   /// 登陆表单
-  Widget _buildForm() {
+  Widget _buildForm(Store store) {
     return _buildCommon(
       Form(
         autovalidate: true,
@@ -123,11 +126,18 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: <Widget>[
             TextFormField(
-              decoration: new InputDecoration(
+              focusNode: _accountfocusNode,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: store.state.themeData.primaryColor,
+                  ),
+                ),
                 labelText: '用户名',
               ),
               validator: (val) {
-                return val.length < 1 ? '用户名不允许为空' : null;
+                return val.isEmpty ? '请输入用户名' : null;
               },
               onSaved: (val) {
                 if (mounted) {
@@ -137,13 +147,23 @@ class _LoginPageState extends State<LoginPage> {
                 }
               },
             ),
+            SizedBox(
+              height: S.h(40),
+            ),
             TextFormField(
-              decoration: new InputDecoration(
+              focusNode: _passwordfocusNode,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: store.state.themeData.primaryColor,
+                  ),
+                ),
                 labelText: '密码',
               ),
               obscureText: true,
               validator: (val) {
-                return val.length < 1 ? '密码不允许为空' : null;
+                return val.isEmpty ? '请输入密码' : null;
               },
               onSaved: (val) {
                 if (mounted) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_moecony/widget/drawer.dart';
 
@@ -64,7 +63,6 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return Scaffold(
       appBar: MTConstant.APPBAR(
         Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_moecony/common/redux/state.dart';
@@ -48,8 +49,13 @@ class MTDrawer extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                    bottom: S.h(40),
-                    right: S.w(56),
+                  bottom: S.h(40),
+                  right: S.w(56),
+                  child: InkWell(
+                    onTap: () async {
+                      await SystemChannels.platform
+                          .invokeMethod<void>('SystemNavigator.pop');
+                    },
                     child: Row(
                       children: <Widget>[
                         Icon(Icons.cancel),
@@ -61,7 +67,9 @@ class MTDrawer extends StatelessWidget {
                           style: MTConstant.SMALL_DEFAULT_TEXT,
                         ),
                       ],
-                    )),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
