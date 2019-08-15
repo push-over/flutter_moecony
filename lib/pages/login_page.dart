@@ -8,7 +8,6 @@ import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
 import 'package:flutter_moecony/common/utils/navigator_utils.dart';
 
 import 'package:flutter_moecony/widget/flex_button.dart';
-import 'package:flutter_moecony/widget/spinkit.dart';
 
 import 'package:flutter_moecony/pages/select_line_page.dart';
 
@@ -69,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         childrens.add(_mainConatiner);
         if (_isLoading) {
-          childrens.add(_buildLoadding());
+          childrens.add(MTConstant.LOADDING(context));
         }
         return Scaffold(
           appBar: MTConstant.APPBAR(
@@ -88,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// logo
   Widget _buildMtLogo() {
     return _buildCommon(
       Stack(
@@ -114,6 +114,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// 登陆表单
   Widget _buildForm() {
     return _buildCommon(
       Form(
@@ -158,6 +159,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// 记住密码
   Widget _buildRememberPassword() {
     return _buildCommon(
       Row(
@@ -180,6 +182,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// 登陆按钮
   Widget _buildLoginButton(BuildContext context, Store store) {
     return _buildCommon(
       MTFlexButton(
@@ -199,22 +202,6 @@ class _LoginPageState extends State<LoginPage> {
         vertical: S.w(10),
       ),
       child: widget,
-    );
-  }
-
-  Widget _buildLoadding() {
-    return Container(
-      constraints: BoxConstraints(
-        minWidth: MediaQuery.of(context).size.width,
-        minHeight: MediaQuery.of(context).size.height,
-      ),
-      color: Colors.black12,
-      child: Center(
-        child: Opacity(
-          opacity: 0.9,
-          child: MTSpinKit(),
-        ),
-      ),
     );
   }
 }

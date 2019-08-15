@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_moecony/pages/login_page.dart';
 import 'package:flutter_moecony/pages/select_line_page.dart';
+import 'package:flutter_moecony/pages/select_character_page.dart';
 import 'package:flutter_moecony/common/utils/navigator_utils.dart';
 
 class TestPage extends StatelessWidget {
@@ -29,6 +30,19 @@ class TestPage extends StatelessWidget {
             onTap: () => NavigatorUtils.NavigatorRouter(
               context,
               SelectLinePage(),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          color: Colors.black12,
+          child: ListTile(
+            title: Text('选择角色'),
+            onTap: () => NavigatorUtils.NavigatorRouter(
+              context,
+              SelectCharacterPage(),
             ),
           ),
         ),

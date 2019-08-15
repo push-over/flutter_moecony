@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_moecony/common/config/config.dart';
+import 'package:flutter_moecony/widget/spinkit.dart';
 
 abstract class MTColors {
   static const int PRIMARY_VALUE = 0xFFFFCFE2;
@@ -61,6 +62,22 @@ abstract class MTConstant {
       title: widget,
       iconTheme: IconThemeData(
         color: Color(MTColors.LIGHT),
+      ),
+    );
+  }
+
+  static Widget LOADDING(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        minWidth: MediaQuery.of(context).size.width,
+        minHeight: MediaQuery.of(context).size.height,
+      ),
+      color: Colors.black12,
+      child: Center(
+        child: Opacity(
+          opacity: 0.9,
+          child: MTSpinKit(),
+        ),
       ),
     );
   }

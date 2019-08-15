@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: store.state.themeData,
             home: MTBottomNavigationBar(),
+            routes: {},
           );
         },
       ),

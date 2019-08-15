@@ -6,6 +6,7 @@ import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/widget/tabbar.dart';
 
 class GamePage extends StatefulWidget {
+  static final String sName = 'game';
   @override
   _GamePageState createState() => _GamePageState();
 }
@@ -18,11 +19,12 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    print('game');
 
     tab = ['主页', '日常', '地图', '任务', '活动'];
     _currentIndex = 0;
     _tabController = TabController(length: tab.length, vsync: this);
-    _tabController.addListener(__handleTabSelection);
+    _tabController.addListener(_handleTabSelection);
   }
 
   @override
@@ -31,7 +33,7 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
     _tabController.dispose();
   }
 
-  __handleTabSelection() {
+  _handleTabSelection() {
     if (mounted) {
       setState(() {
         _currentIndex = _tabController.index;

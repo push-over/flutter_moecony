@@ -26,7 +26,7 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
   @override
   void initState() {
     super.initState();
-
+    print('bottom');
     _navigationBar = [
       {
         'title': '游戏',

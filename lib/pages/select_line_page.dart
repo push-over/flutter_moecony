@@ -5,8 +5,10 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
+import 'package:flutter_moecony/common/utils/navigator_utils.dart';
 
 import 'package:flutter_moecony/widget/spinkit.dart';
+import 'package:flutter_moecony/pages/select_character_page.dart';
 
 class SelectLinePage extends StatefulWidget {
   @override
@@ -15,6 +17,7 @@ class SelectLinePage extends StatefulWidget {
 
 class _SelectLinePageState extends State<SelectLinePage> {
   Map<String, dynamic> _listLines;
+  bool _isLoading;
 
   @override
   void initState() {
@@ -29,20 +32,37 @@ class _SelectLinePageState extends State<SelectLinePage> {
       '惊天动地七线': true,
       '惊天动地八线': false,
     };
+
+    _isLoading = false;
+  }
+
+  void _handleSubmit() {
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+
+    Future.delayed(Duration(seconds: 3), () {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          NavigatorUtils.NavigatorRouter(
+            context,
+            SelectCharacterPage(),
+          );
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<MTState>(
       builder: (BuildContext context, Store store) {
-        return Scaffold(
-          appBar: MTConstant.APPBAR(
-            Text(
-              '选择线路',
-              style: MTConstant.MIDDLE_WHITE_TEXT,
-            ),
-          ),
-          body: Column(
+        List<Widget> childrens = [];
+        final _mainConatiner = Container(
+          child: Column(
             children: <Widget>[
               _buildTitle(store),
               _buildListLines(store),
@@ -50,10 +70,26 @@ class _SelectLinePageState extends State<SelectLinePage> {
             ],
           ),
         );
+        childrens.add(_mainConatiner);
+        if (_isLoading) {
+          childrens.add(MTConstant.LOADDING(context));
+        }
+        return Scaffold(
+          appBar: MTConstant.APPBAR(
+            Text(
+              '选择线路',
+              style: MTConstant.MIDDLE_WHITE_TEXT,
+            ),
+          ),
+          body: Stack(
+            children: childrens,
+          ),
+        );
       },
     );
   }
 
+  /// 标题
   Widget _buildTitle(Store store) {
     return Container(
       alignment: Alignment.center,
@@ -72,6 +108,7 @@ class _SelectLinePageState extends State<SelectLinePage> {
     );
   }
 
+  /// 线路列表
   Widget _buildListLines(Store store) {
     return Expanded(
       child: ListView.builder(
@@ -85,8 +122,10 @@ class _SelectLinePageState extends State<SelectLinePage> {
     );
   }
 
+  /// 线路item
   Widget _buildLineItem(Store store, int index) {
     return InkWell(
+      onTap: () => _handleSubmit(),
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: S.h(24),
@@ -134,6 +173,7 @@ class _SelectLinePageState extends State<SelectLinePage> {
     );
   }
 
+  /// 登陆信息
   Widget _buildLoginInfo() {
     return SafeArea(
       child: Padding(
@@ -151,6 +191,7 @@ class _SelectLinePageState extends State<SelectLinePage> {
     );
   }
 
+  /// 公共的row
   Widget _buildCommonRow(String key, String value) {
     return Row(
       children: <Widget>[

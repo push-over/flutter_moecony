@@ -1,9 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_moecony/pages/bottom_navigarion_bar.dart';
+
 abstract class NavigatorUtils {
+  ///替换
+  static pushReplacementNamed(BuildContext context, String routeName) {
+    Navigator.pushReplacementNamed(context, routeName);
+  }
+
+  ///切换无参数页面
   static pushNamed(BuildContext context, String routeName) {
     Navigator.pushNamed(context, routeName);
+  }
+
+  static goHome(BuildContext context) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MTBottomNavigationBar(),
+      ),
+      (route) => route == null,
+    );
   }
 
   ///跳转新页面并且替换，比如登录页跳转主页
