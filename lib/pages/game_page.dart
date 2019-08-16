@@ -19,8 +19,6 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    print('game');
-
     tab = ['主页', '日常', '地图', '任务', '活动'];
     _currentIndex = 0;
     _tabController = TabController(length: tab.length, vsync: this);

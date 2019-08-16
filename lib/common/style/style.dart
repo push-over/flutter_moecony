@@ -23,6 +23,24 @@ abstract class MTColors {
     },
   );
 
+  static const int PRIMARY_VALUE_BLACK = 0xFF24292E;
+
+  static const MaterialColor PRIMARY_SWATCH_BLACK = const MaterialColor(
+    PRIMARY_VALUE_BLACK,
+    const <int, Color>{
+      50: const Color(PRIMARY_LIGHT_VALUE),
+      100: const Color(PRIMARY_LIGHT_VALUE),
+      200: const Color(PRIMARY_LIGHT_VALUE),
+      300: const Color(PRIMARY_LIGHT_VALUE),
+      400: const Color(PRIMARY_LIGHT_VALUE),
+      500: const Color(PRIMARY_VALUE_BLACK),
+      600: const Color(PRIMARY_DARK_VALUE),
+      700: const Color(PRIMARY_DARK_VALUE),
+      800: const Color(PRIMARY_DARK_VALUE),
+      900: const Color(PRIMARY_DARK_VALUE),
+    },
+  );
+
   static const int LIGHT = 0xFFFFFFFF;
 
   static const int DEFAULT_TEXT = 0xFF333333;
@@ -40,13 +58,34 @@ abstract class MTIcons {
 
   /// BottomNavigationBar
   static const IconData GAME =
-      IconData(0xe6fb, fontFamily: MTConfig.FONT_FAMILY);
+      IconData(0xe64f, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData GAME_FILL =
+      IconData(0xe7d8, fontFamily: MTConfig.FONT_FAMILY);
   static const IconData SOCIAL =
-      IconData(0xe66a, fontFamily: MTConfig.FONT_FAMILY);
+      IconData(0xe7d5, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData SOCIAL_FILL =
+      IconData(0xe7d9, fontFamily: MTConfig.FONT_FAMILY);
   static const IconData BACKPACK =
-      IconData(0xe631, fontFamily: MTConfig.FONT_FAMILY);
+      IconData(0xe61d, fontFamily: MTConfig.FONT_FAMILY);
   static const IconData RABBIT =
       IconData(0xe615, fontFamily: MTConfig.FONT_FAMILY);
+
+  /// Drawer
+  static const IconData COLLECTION =
+      IconData(0xe86e, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData SETTINGS =
+      IconData(0xe893, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData THEME =
+      IconData(0xe760, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData MAKE_COMPLAINTS =
+      IconData(0xe69c, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData ON = IconData(0xe6cd, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData LOGOUT =
+      IconData(0xe894, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData RIGHT_ARROW =
+      IconData(0xe88e, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData VIP =
+      IconData(0xe61a, fontFamily: MTConfig.FONT_FAMILY);
 }
 
 abstract class MTConstant {
@@ -63,6 +102,7 @@ abstract class MTConstant {
       iconTheme: IconThemeData(
         color: Color(MTColors.LIGHT),
       ),
+      centerTitle: true,
     );
   }
 

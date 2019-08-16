@@ -133,7 +133,7 @@ class ChatMessage extends StatelessWidget {
       width: S.w(372),
       child: Text(
         text,
-        style: MTConstant.MIN_DEFAULT_TEXT,
+        style: MTConstant.MIN_WHITE_TEXT,
       ),
     );
   }

@@ -1,77 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
+import 'package:flutter_moecony/common/utils/common_utils.dart';
 
 import 'package:flutter_moecony/widget/cached_network_image.dart';
 
-class MTDrawer extends StatelessWidget {
+class MTDrawer extends StatefulWidget {
+  @override
+  _MTDrawerState createState() => _MTDrawerState();
+}
+
+class _MTDrawerState extends State<MTDrawer> {
+  Map<String, dynamic> _menus;
+
+  @override
+  void initState() {
+    super.initState();
+    _menus = {
+      '设置主题': MTIcons.THEME,
+      '我的收藏': MTIcons.COLLECTION,
+      '助手设置': MTIcons.SETTINGS,
+      '吐槽程序员': MTIcons.MAKE_COMPLAINTS,
+      '关于萌兔': MTIcons.ON,
+      '残忍退出': MTIcons.LOGOUT,
+    };
+  }
+
+  _showThemeDialog(BuildContext context, Store store) {
+    List<String> list = [];
+    List<Color> colorList = CommonUtils.getThemeListColor();
+    for (var i = 0; i < colorList.length; i++) {
+      i == 0 ? list.add('默认主题') : list.add('主题 $i');
+    }
+
+    CommonUtils.showCommitOptionDialog(context, list, (index) {
+      CommonUtils.pushTheme(store, index);
+    }, colorList: colorList);
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<MTState>(
       builder: (BuildContext context, Store store) {
         return Drawer(
-          child: SingleChildScrollView(
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  color: Color(MTColors.LIGHT),
-                  constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height,
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      _buildHeader(store),
-                      _buildListTitle('我的收藏'),
-                      _buildListTitle('助手设置'),
-                      _buildListTitle('吐槽程序猿'),
-                      AboutListTile(
-                        child: Text(
-                          '关于萌兔',
-                          style: MTConstant.SMALL_DEFAULT_TEXT,
-                        ),
-                        applicationName: '萌兔',
-                        applicationVersion: "1.0",
-                        applicationIcon: Image.network(
-                          MTIcons.DEFAULT_REMOTE_PIC,
-                          width: S.w(128),
-                          height: S.h(128),
-                        ),
-                        applicationLegalese: '',
-                        aboutBoxChildren: <Widget>[
-                          Text('测试版本'),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  bottom: S.h(40),
-                  right: S.w(56),
-                  child: InkWell(
-                    onTap: () async {
-                      await SystemChannels.platform
-                          .invokeMethod<void>('SystemNavigator.pop');
-                    },
-                    child: Row(
-                      children: <Widget>[
-                        Icon(Icons.cancel),
-                        SizedBox(
-                          width: S.w(10),
-                        ),
-                        Text(
-                          '退出',
-                          style: MTConstant.SMALL_DEFAULT_TEXT,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(),
+            itemCount: _menus.length + 1,
+            itemBuilder: (BuildContext context, int index) {
+              if (index == 0) {
+                return _buildHeader(store);
+              }
+              index -= 1;
+              return _buildListTitle(
+                _menus.keys.elementAt(index),
+                _menus.values.elementAt(index),
+                store,
+              );
+            },
           ),
         );
       },
@@ -98,9 +87,17 @@ class MTDrawer extends StatelessWidget {
                       height: S.w(100),
                     ),
                   ),
-                  Text(
-                    '用户名称',
-                    style: MTConstant.MIN_WHITE_TEXT,
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        MTIcons.VIP,
+                        color: Color(0xFFCD7F32),
+                      ),
+                      Text(
+                        '用户名称',
+                        style: MTConstant.MIN_WHITE_TEXT,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -108,9 +105,9 @@ class MTDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   _buildAttributes(Color(0xFFFF6C6C), 0.7, 1350, 1963),
-                  _buildAttributes(Color(0xFF6C97FF), 0.5, 1800, 2526),
+                  _buildAttributes(Color(0xFF6C97FF), 0.7, 1800, 2526),
                   _buildAttributes(Color(0xFFC26CFF), 0.6, 123432, 219231),
-                  _buildAttributes(Color(0xFFFFF46C), 0.3, 420, 1166),
+                  _buildAttributes(Color(0xFFFFF46C), 0.4, 420, 1166),
                 ],
               ),
             ],
@@ -165,14 +162,31 @@ class MTDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildListTitle(String title) {
+  Widget _buildListTitle(String title, IconData leading, Store store) {
     return ListTile(
-      leading: Icon(Icons.ac_unit),
+      leading: Icon(leading),
+      trailing: Icon(MTIcons.RIGHT_ARROW),
       title: Text(
         title,
         style: MTConstant.SMALL_DEFAULT_TEXT,
       ),
-      onTap: () {},
+      onTap: () {
+        switch (title) {
+          case '设置主题':
+            _showThemeDialog(context, store);
+            break;
+          case '我的收藏':
+            break;
+          case '助手设置':
+            break;
+          case '吐槽程序员':
+            break;
+          case '关于萌兔':
+            break;
+          default:
+            break;
+        }
+      },
     );
   }
 }

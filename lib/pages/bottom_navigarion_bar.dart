@@ -8,8 +8,6 @@ import 'package:flutter_moecony/pages/backpack_page.dart';
 import 'package:flutter_moecony/pages/rabbit_page.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 
-import 'package:flutter_moecony/pages/test_page.dart';
-
 class MTBottomNavigationBar extends StatefulWidget {
   MTBottomNavigationBar({Key key}) : super(key: key);
 
@@ -28,25 +26,25 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
     print('bottom');
     _navigationBar = [
       {
-        'title': '游戏',
+        'title': '首页',
         'icon': MTIcons.GAME,
+        'activeIcon': MTIcons.GAME_FILL,
       },
       {
         'title': '社交',
         'icon': MTIcons.SOCIAL,
+        'activeIcon': MTIcons.SOCIAL_FILL,
       },
       {
         'title': '背包',
         'icon': MTIcons.BACKPACK,
+        'activeIcon': MTIcons.BACKPACK,
       },
       {
         'title': '兔兔坊',
         'icon': MTIcons.RABBIT,
+        'activeIcon': MTIcons.RABBIT,
       },
-      {
-        'title': '测试',
-        'icon': MTIcons.RABBIT,
-      }
     ];
 
     _pages = [
@@ -54,7 +52,6 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
       SocialPage(),
       BackpackPage(),
       RabbitPage(),
-      TestPage(),
     ];
 
     _pageController = PageController(initialPage: 0);
@@ -102,6 +99,7 @@ class _MTBottomNavigationBarState extends State<MTBottomNavigationBar> {
             (item) => BottomNavigationBarItem(
               title: Text(item['title']),
               icon: Icon(item['icon']),
+              activeIcon: Icon(item['activeIcon']),
             ),
           )
           .toList(),
