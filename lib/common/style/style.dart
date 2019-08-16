@@ -86,6 +86,11 @@ abstract class MTIcons {
       IconData(0xe88e, fontFamily: MTConfig.FONT_FAMILY);
   static const IconData VIP =
       IconData(0xe61a, fontFamily: MTConfig.FONT_FAMILY);
+
+
+  /// Game
+  static const IconData ATTENTION_LIGHT =
+  IconData(0xe7f4, fontFamily: MTConfig.FONT_FAMILY);
 }
 
 abstract class MTConstant {

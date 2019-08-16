@@ -31,6 +31,17 @@ abstract class CommonUtils {
     store.dispatch(RefreshThemeDataAction(themeData: themeData));
   }
 
+  static snackBar(BuildContext context, String title) {
+    final snackBar = new SnackBar(
+      duration: Duration(seconds: 1),
+      backgroundColor: Theme.of(context).primaryColor,
+      content: Text(
+        title,
+        style: MTConstant.NORMAL_WHITE_TEXT,
+      ),
+    );
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
 
 //  void showAboutDialog({
 //    @required BuildContext context,
@@ -55,11 +66,14 @@ abstract class CommonUtils {
 //    );
 //  }
 
-
   static Future<Null> showCommitOptionDialog(
     BuildContext context,
     List<String> commitMaps,
-    ValueChanged<int> onTap, {width = 250.0, height = 400.0, List<Color> colorList,}) {
+    ValueChanged<int> onTap, {
+    width = 250.0,
+    height = 400.0,
+    List<Color> colorList,
+  }) {
     return NavigatorUtils.showMTDialog(
       context: context,
       builder: (BuildContext context) {

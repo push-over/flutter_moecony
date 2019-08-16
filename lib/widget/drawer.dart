@@ -7,6 +7,7 @@ import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
 import 'package:flutter_moecony/common/utils/common_utils.dart';
 
 import 'package:flutter_moecony/widget/cached_network_image.dart';
+import 'package:flutter_moecony/widget/character_attributes.dart';
 
 class MTDrawer extends StatefulWidget {
   @override
@@ -77,88 +78,69 @@ class _MTDrawerState extends State<MTDrawer> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  ClipOval(
-                    child: MTCacheNetworkImageWidget(
-                      url: MTIcons.DEFAULT_REMOTE_PIC,
-                      width: S.w(100),
-                      height: S.w(100),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ClipOval(
+                      child: MTCacheNetworkImageWidget(
+                        url: MTIcons.DEFAULT_REMOTE_PIC,
+                        width: S.w(100),
+                        height: S.w(100),
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        MTIcons.VIP,
-                        color: Color(0xFFCD7F32),
-                      ),
-                      Text(
-                        '用户名称',
-                        style: MTConstant.MIN_WHITE_TEXT,
-                      ),
-                    ],
-                  ),
-                ],
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          MTIcons.VIP,
+                          color: Color(0xFFCD7F32),
+                        ),
+                        Text(
+                          '用户名称',
+                          overflow: TextOverflow.ellipsis,
+                          style: MTConstant.MIN_WHITE_TEXT,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  _buildAttributes(Color(0xFFFF6C6C), 0.7, 1350, 1963),
-                  _buildAttributes(Color(0xFF6C97FF), 0.7, 1800, 2526),
-                  _buildAttributes(Color(0xFFC26CFF), 0.6, 123432, 219231),
-                  _buildAttributes(Color(0xFFFFF46C), 0.4, 420, 1166),
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    CharacterAttributes(
+                      color: Color(0xFFFF6C6C),
+                      value: 0.7,
+                      min: 1350,
+                      max: 1963,
+                    ),
+                    CharacterAttributes(
+                      color: Color(0xFF6C97FF),
+                      value: 0.7,
+                      min: 1800,
+                      max: 2526,
+                    ),
+                    CharacterAttributes(
+                      color: Color(0xFFC26CFF),
+                      value: 0.6,
+                      min: 123432,
+                      max: 219231,
+                    ),
+                    CharacterAttributes(
+                      color: Color(0xFFFFF46C),
+                      value: 0.4,
+                      min: 420,
+                      max: 1166,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildAttributes(Color color, double value, int min, int max) {
-    return Column(
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(
-            S.w(10),
-          ),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                width: S.w(260),
-                height: S.h(20),
-                child: LinearProgressIndicator(
-                  value: value,
-                  backgroundColor: Color(MTColors.LIGHT),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    color,
-                  ),
-                ),
-              ),
-              Positioned(
-                child: Container(
-                  width: S.w(260),
-                  height: S.h(20),
-                  child: Center(
-                    child: Text(
-                      '$min/$max',
-                      style: TextStyle(
-                        fontSize: S.sp(12),
-                        color: Color(MTColors.DEFAULT_TEXT),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: S.h(16),
-        ),
-      ],
     );
   }
 
