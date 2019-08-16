@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
 import 'package:flutter_moecony/common/utils/navigator_utils.dart';
+import 'package:flutter_moecony/common/utils/common_utils.dart';
 
 import 'package:flutter_moecony/widget/flex_button.dart';
 
@@ -20,7 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _formKey;
   FocusNode _accountfocusNode, _passwordfocusNode;
   bool _isLoading, _isCheck;
-  String _account, _password;
+  String _account, _password, _currentRegion;
+  List<String> _regions;
 
   @override
   void initState() {
@@ -30,6 +33,38 @@ class _LoginPageState extends State<LoginPage> {
     _isLoading = false;
     _accountfocusNode = FocusNode();
     _passwordfocusNode = FocusNode();
+    _currentRegion = 'N27';
+    _regions = [
+      'N1',
+      'N2',
+      'N3',
+      'N4',
+      'N5',
+      'N6',
+      'N7',
+      'N8',
+      'N9',
+      'N10',
+      'N11',
+      'N12',
+      'N13',
+      'N14',
+    ];
+  }
+
+  _showThemeDialog(BuildContext context) {
+    CommonUtils.showCommitOptionDialog(context, _regions, (index) {
+      _selectRegion(index);
+    });
+  }
+
+  void _selectRegion(index) {
+    print(_regions[index]);
+    if (mounted) {
+      setState(() {
+        _currentRegion = _regions[index];
+      });
+    }
   }
 
   void _handleSubmit() {
@@ -62,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
         final _mainConatiner = Container(
           child: Column(
             children: <Widget>[
-              _buildMtLogo(),
+              _buildChooseALargeArea(store),
               _buildForm(store),
               _buildRememberPassword(),
               _buildLoginButton(context, store),
@@ -91,28 +126,42 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   /// logo
-  Widget _buildMtLogo() {
+  Widget _buildChooseALargeArea(Store store) {
     return _buildCommon(
-      Stack(
-        children: <Widget>[
-          Text(
-            '萌兔助手',
-            style: TextStyle(
-              fontSize: S.sp(80),
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
+      Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: S.h(30),
+        ),
+        child: GestureDetector(
+          onTap: () => _showThemeDialog(context),
+          child: SizedBox(
+            child: Shimmer.fromColors(
+              baseColor: Theme.of(context).primaryColor,
+              highlightColor: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    '选择大区：',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: MTConstant.LAGER_SIZE,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    _currentRegion,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: MTConstant.LAGER_SIZE,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: Container(
-              color: Colors.black,
-              width: S.w(140),
-              height: S.h(6),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
