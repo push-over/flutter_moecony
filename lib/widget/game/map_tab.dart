@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:redux/redux.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
-import 'package:flutter_moecony/common/utils/common_utils.dart';
-
-import 'package:flutter_moecony/widget/cached_network_image.dart';
-import 'package:flutter_moecony/widget/switch.dart';
-import 'package:flutter_moecony/widget/character_attributes.dart';
-import 'package:flutter_moecony/widget/flex_button.dart';
 
 class MapTab extends StatefulWidget {
   @override
