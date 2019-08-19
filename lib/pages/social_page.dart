@@ -10,8 +10,8 @@ import 'package:flutter_moecony/pages/chat_page.dart';
 class SocialPage extends StatelessWidget {
   Map<String, IconData> chats = {
     '所有聊天': MTIcons.SOCIAL,
-    '近聊': MTIcons.SOCIAL,
-    '私聊': MTIcons.SOCIAL,
+    '近聊': MTIcons.CHAT,
+    '私聊': MTIcons.PRIVATE_CHAT,
   };
 
   @override

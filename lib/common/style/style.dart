@@ -87,10 +87,40 @@ abstract class MTIcons {
   static const IconData VIP =
       IconData(0xe61a, fontFamily: MTConfig.FONT_FAMILY);
 
-
   /// Game
+  static const IconData DRAGON =
+      IconData(0xe63f, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData SETTINGS_Fill =
+      IconData(0xe75a, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData UPGRADE =
+      IconData(0xe628, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData HEART =
+      IconData(0xe646, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData GUARD =
+      IconData(0xe79c, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData VIOLENCE =
+      IconData(0xe748, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData MONSTER =
+      IconData(0xe640, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData TICKET =
+      IconData(0xe65f, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData CLEARANCE =
+      IconData(0xe608, fontFamily: MTConfig.FONT_FAMILY);
+  static const IconData RUNNING =
+      IconData(0xe867, fontFamily: MTConfig.FONT_FAMILY);
+
   static const IconData ATTENTION_LIGHT =
-  IconData(0xe7f4, fontFamily: MTConfig.FONT_FAMILY);
+      IconData(0xe7f4, fontFamily: MTConfig.FONT_FAMILY);
+
+  static const IconData BOOKMARK =
+      IconData(0xe8b4, fontFamily: MTConfig.FONT_FAMILY);
+
+
+  static const IconData CHAT =
+  IconData(0xe66a, fontFamily: MTConfig.FONT_FAMILY);
+
+  static const IconData PRIVATE_CHAT =
+      IconData(0xe64e, fontFamily: MTConfig.FONT_FAMILY);
 }
 
 abstract class MTConstant {

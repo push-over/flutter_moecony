@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+import 'package:flutter_moecony/common/redux/state.dart';
 
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
@@ -11,54 +15,25 @@ class ActivityTab extends StatefulWidget {
 }
 
 class _ActivityTabState extends State<ActivityTab> {
-  List<Map<String, dynamic>> _characters;
-
-  @override
-  void initState() {
-    super.initState();
-    _characters = [
-      {
-        'avatar': 'static/images/1_01.png',
-        '名称：': '小包子',
-        '等级': 38,
-        'career': '男术士',
-      },
-      {
-        'avatar': 'static/images/1_02.png',
-        '名称：': '小包子',
-        '等级': 38,
-        'career': '刺客',
-      },
-      {
-        'avatar': 'static/images/1_03.png',
-        '名称：': '小包子',
-        '等级': 38,
-        'career': '战士',
-      },
-      {
-        'avatar': 'static/images/1_04.png',
-        '名称：': '小包子',
-        '等级': 38,
-        'career': '刀客',
-      }
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.symmetric(
-        vertical: S.h(20),
-        horizontal: S.w(30),
-      ),
-      children: <Widget>[
-        _buildActivityInfo(),
-        _buildAnnouncement(),
-      ],
+    return StoreBuilder<MTState>(
+      builder: (BuildContext context, Store store) {
+        return ListView(
+          padding: EdgeInsets.symmetric(
+            vertical: S.h(20),
+            horizontal: S.w(30),
+          ),
+          children: <Widget>[
+            _buildActivityInfo(store),
+            _buildAnnouncement(),
+          ],
+        );
+      },
     );
   }
 
-  Widget _buildActivityInfo() {
+  Widget _buildActivityInfo(Store store) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: S.w(50),
@@ -90,7 +65,10 @@ class _ActivityTabState extends State<ActivityTab> {
             children: <Widget>[
               Align(
                 alignment: Alignment.centerLeft,
-                child: Icon(Icons.print),
+                child: Icon(
+                  MTIcons.BOOKMARK,
+                  color: store.state.themeData.primaryColor,
+                ),
               ),
               Text(
                 '活动一 迷之暗室',
@@ -109,19 +87,22 @@ class _ActivityTabState extends State<ActivityTab> {
                     '活动详情请点击',
                     style: TextStyle(
                       fontSize: S.sp(28),
-                      color: Colors.red,
+                      color: store.state.themeData.primaryColor,
                     ),
                   ),
                   SizedBox(
                     width: S.w(10),
                   ),
-                  Icon(Icons.exit_to_app),
+                  Icon(
+                    MTIcons.RUNNING,
+                    color: store.state.themeData.primaryColor,
+                  ),
                 ],
               ),
             ],
           );
         },
-        itemCount: _characters.length,
+        itemCount: 5,
       ),
     );
   }
