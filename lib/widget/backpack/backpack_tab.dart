@@ -49,8 +49,8 @@ class _BackpackTabState extends State<BackpackTab> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      _buildCircle('整理背包'),
-                      _buildCircle('银票葫芦'),
+                      _buildCircle('整理背包', Colors.blueAccent),
+                      _buildCircle('银票葫芦', Colors.redAccent),
                     ],
                   ),
                   Column(
@@ -72,7 +72,7 @@ class _BackpackTabState extends State<BackpackTab> {
     );
   }
 
-  Widget _buildCircle(String title) {
+  Widget _buildCircle(String title, Color color) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: S.w(5),
@@ -84,7 +84,7 @@ class _BackpackTabState extends State<BackpackTab> {
         borderRadius: BorderRadius.circular(
           S.w(50),
         ),
-        color: Colors.redAccent,
+        color: color,
       ),
       child: Text(
         title,
@@ -96,6 +96,9 @@ class _BackpackTabState extends State<BackpackTab> {
 
   Widget _buildBorderBox(int num, Store store) {
     return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: S.w(5),
+      ),
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
@@ -129,28 +132,10 @@ class _BackpackTabState extends State<BackpackTab> {
           width: S.w(20),
         ),
         _buildBorderBox(max, store),
-        SizedBox(
-          width: S.w(5),
-        ),
         Text('锭'),
-        SizedBox(
-          width: S.w(5),
-        ),
         _buildBorderBox(small, store),
-        SizedBox(
-          width: S.w(5),
-        ),
         Text('两'),
-        SizedBox(
-          width: S.w(5),
-        ),
         _buildBorderBox(min, store),
-        SizedBox(
-          width: S.w(5),
-        ),
-        SizedBox(
-          width: S.w(5),
-        ),
         Text('文'),
       ],
     );
