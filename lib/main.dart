@@ -4,7 +4,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/router/router.dart';
-import 'package:flutter_moecony/pages/welcome_page.dart';
 
 void main() => runApp(MyApp());
 

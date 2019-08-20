@@ -79,9 +79,7 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
     return Expanded(
       child: TabBarView(
         controller: _tabController,
-        children: _tabView.map((item) {
-          return item;
-        }).toList(),
+        children: _tabView.map((item) => item).toList(),
       ),
     );
   }

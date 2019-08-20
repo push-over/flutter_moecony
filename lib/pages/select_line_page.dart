@@ -7,7 +7,6 @@ import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
 import 'package:flutter_moecony/common/utils/navigator_utils.dart';
 
-import 'package:flutter_moecony/widget/spinkit.dart';
 import 'package:flutter_moecony/pages/select_character_page.dart';
 
 class SelectLinePage extends StatefulWidget {

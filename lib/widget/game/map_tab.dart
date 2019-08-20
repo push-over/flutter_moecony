@@ -26,8 +26,10 @@ class _MapTabState extends State<MapTab> {
         vertical: S.h(20),
       ),
       child: Wrap(
-        spacing: 8.0, // 主轴(水平)方向间距
-        runSpacing: 4.0, // 纵轴（垂直）方向间距
+        spacing: 8.0,
+        /// 主轴(水平)方向间距
+        runSpacing: 4.0,
+        /// 纵轴（垂直）方向间距
         children: Boxs(),
       ),
     );

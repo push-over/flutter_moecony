@@ -22,8 +22,8 @@ class MTFlexButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new RaisedButton(
-      padding: new EdgeInsets.only(
+    return RaisedButton(
+      padding: EdgeInsets.only(
         left: 20.0,
         top: 10.0,
         right: 20.0,
@@ -31,14 +31,14 @@ class MTFlexButton extends StatelessWidget {
       ),
       textColor: textColor,
       color: color,
-      child: new Flex(
+      child: Flex(
         mainAxisAlignment: mainAxisAlignment,
         direction: Axis.horizontal,
         children: <Widget>[
-          new Expanded(
-            child: new Text(
+          Expanded(
+            child: Text(
               text,
-              style: new TextStyle(fontSize: fontSize),
+              style: TextStyle(fontSize: fontSize),
               textAlign: TextAlign.center,
               maxLines: maxLines,
               overflow: TextOverflow.ellipsis,

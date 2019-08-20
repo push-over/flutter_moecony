@@ -4,6 +4,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_moecony/common/redux/state.dart';
 
 import 'package:flutter_moecony/widget/tabbar.dart';
+import 'package:flutter_moecony/widget/backpack/backpack_tab.dart';
+import 'package:flutter_moecony/widget/backpack/warehouse_tab.dart';
+import 'package:flutter_moecony/widget/backpack/trading_house_tab.dart';
 
 class BackpackPage extends StatefulWidget {
   @override
@@ -13,6 +16,7 @@ class BackpackPage extends StatefulWidget {
 class _BackpackPageState extends State<BackpackPage>
     with TickerProviderStateMixin {
   List<String> tab;
+  List<Widget> _tabView;
   TabController _tabController;
   int _currentIndex;
 
@@ -21,6 +25,7 @@ class _BackpackPageState extends State<BackpackPage>
     super.initState();
 
     tab = ['背包', '仓库', '交易行'];
+    _tabView = [BackpackTab(), WarehouseTab(), TradingHouseTab()];
     _currentIndex = 0;
     _tabController = TabController(length: tab.length, vsync: this);
     _tabController.addListener(__handleTabSelection);
@@ -66,13 +71,7 @@ class _BackpackPageState extends State<BackpackPage>
     return Expanded(
       child: TabBarView(
         controller: _tabController,
-        children: tab
-            .map(
-              (item) => Center(
-                child: Text(item),
-              ),
-            )
-            .toList(),
+        children: _tabView.map((item) => item).toList(),
       ),
     );
   }

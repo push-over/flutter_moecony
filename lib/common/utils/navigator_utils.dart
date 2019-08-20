@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_moecony/pages/bottom_navigarion_bar.dart';
-import 'package:flutter_moecony/pages/login_page.dart';
-import 'package:flutter_moecony/pages/welcome_page.dart';
 import 'package:flutter_moecony/common/router/router.dart';
 
 abstract class NavigatorUtils {

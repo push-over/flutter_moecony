@@ -26,7 +26,7 @@ class _WelcomePageState extends State<WelcomePage> {
     hadInit = true;
 
     ///防止多次进入
-    Store<MTState> store = StoreProvider.of(context);
+//    Store<MTState> store = StoreProvider.of(context);
     new Future.delayed(const Duration(seconds: 2, milliseconds: 500), () {
       if (isLogin) {
         NavigatorUtils.goHome(context);
