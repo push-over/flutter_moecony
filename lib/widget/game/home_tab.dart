@@ -7,20 +7,25 @@ import 'package:flutter_moecony/common/redux/state.dart';
 import 'package:flutter_moecony/common/style/style.dart';
 import 'package:flutter_moecony/common/utils/screenutil_utils.dart';
 import 'package:flutter_moecony/common/utils/common_utils.dart';
+import 'package:flutter_moecony/common/utils/navigator_utils.dart';
 
 import 'package:flutter_moecony/widget/cached_network_image.dart';
 import 'package:flutter_moecony/widget/switch.dart';
 import 'package:flutter_moecony/widget/character_attributes.dart';
 import 'package:flutter_moecony/widget/flex_button.dart';
+import 'package:flutter_moecony/widget/tabbar.dart';
 
 class HomeTab extends StatefulWidget {
   @override
   _HomeTabState createState() => _HomeTabState();
 }
 
-class _HomeTabState extends State<HomeTab> {
+class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
   bool _switch1, _switch2, _switch3;
   List<String> _operationalInformation;
+  List<String> tab;
+  TabController _tabController;
+  int _currentIndex;
 
   @override
   void initState() {
@@ -28,6 +33,11 @@ class _HomeTabState extends State<HomeTab> {
     _switch1 = false;
     _switch2 = false;
     _switch3 = false;
+    tab = ['主页', '日常', '地图'];
+
+    _currentIndex = 0;
+    _tabController = TabController(length: tab.length, vsync: this);
+    _tabController.addListener(_handleTabSelection);
     _operationalInformation = [
       '欢迎使用萌兔助手',
       '您不是自动战斗VIP，无法开启！',
@@ -35,6 +45,106 @@ class _HomeTabState extends State<HomeTab> {
       '花费200文银票',
       '您成功从道具商场购买了大碗茶X1'
     ];
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
+  _handleTabSelection() {
+    if (mounted) {
+      setState(() {
+        _currentIndex = _tabController.index;
+        print(_currentIndex);
+      });
+    }
+  }
+
+  void _showStatusDialog(Store store) {
+    NavigatorUtils.showMTDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Center(
+          child: Container(
+            width: 250.0,
+            height: 400.0,
+            padding: EdgeInsets.all(4.0),
+            margin: EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              color: Color(MTColors.LIGHT),
+              borderRadius: BorderRadius.all(
+                Radius.circular(4.0),
+              ),
+            ),
+            child: Material(
+              child: ListView(
+                children: List.generate(
+                  30,
+                  (T) => Row(
+                    children: <Widget>[
+                      Icon(Icons.ac_unit),
+                      Text('测试'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showFeaturesDialog(Store store) {
+    NavigatorUtils.showMTDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Center(
+          child: Container(
+            width: 250.0,
+            height: 400.0,
+            padding: EdgeInsets.all(4.0),
+            margin: EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              color: Color(MTColors.LIGHT),
+              borderRadius: BorderRadius.all(
+                Radius.circular(4.0),
+              ),
+            ),
+            child: Material(
+              child: DefaultTabController(
+                length: tab.length,
+                child: Column(
+                  children: <Widget>[
+                    MTTabBar(
+                      tabController: _tabController,
+                      store: store,
+                      tab: tab,
+                    ),
+                    _buildTabBarView(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildTabBarView() {
+    return Expanded(
+      child: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          Text('fsdfsd'),
+          Text('fsdfsd'),
+          Text('fsdfsd'),
+        ],
+      ),
+    );
   }
 
   @override
@@ -47,7 +157,7 @@ class _HomeTabState extends State<HomeTab> {
             vertical: S.h(20),
           ),
           children: <Widget>[
-            _buildCharacterInfo(),
+            _buildCharacterInfo(store),
             _buildFeatures(store),
             _buildOperationalContent(),
             _buildOperatingButton(),
@@ -57,7 +167,7 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  Widget _buildCharacterInfo() {
+  Widget _buildCharacterInfo(Store store) {
     return Container(
       height: S.h(180),
       child: Row(
@@ -169,7 +279,7 @@ class _HomeTabState extends State<HomeTab> {
                     ),
                     GestureDetector(
                       child: Icon(MTIcons.ATTENTION_LIGHT),
-                      onTap: () {},
+                      onTap: () => _showStatusDialog(store),
                     ),
                   ],
                 ),
@@ -195,7 +305,7 @@ class _HomeTabState extends State<HomeTab> {
               color: Colors.black12,
               child: Icon(Icons.keyboard_arrow_down),
             ),
-            onTap: () {},
+            onTap: () => _showFeaturesDialog(store),
           ),
         ],
       ),
