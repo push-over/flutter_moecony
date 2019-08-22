@@ -42,7 +42,7 @@ class _BackpackTabState extends State<BackpackTab> {
               margin: EdgeInsets.symmetric(
                 vertical: S.h(20),
               ),
-              height: S.h(200),
+              height: S.h(250),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[

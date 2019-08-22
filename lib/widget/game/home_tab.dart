@@ -257,31 +257,36 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                   min: 420,
                   max: 1166,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        MTCacheNetworkImageWidget(
-                          url: MTIcons.DEFAULT_REMOTE_PIC,
-                          width: 20,
-                          height: 20,
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          MTCacheNetworkImageWidget(
+                            url: MTIcons.DEFAULT_REMOTE_PIC,
+                            width: S.w(40),
+                            height: S.w(40),
+                          ),
+                          SizedBox(
+                            width: S.w(15),
+                          ),
+                          MTCacheNetworkImageWidget(
+                            url: MTIcons.DEFAULT_REMOTE_PIC,
+                            width: S.w(40),
+                            height: S.w(40),
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        child: Icon(
+                          MTIcons.ATTENTION_LIGHT,
+                          size: S.sp(40),
                         ),
-                        SizedBox(
-                          width: S.w(15),
-                        ),
-                        MTCacheNetworkImageWidget(
-                          url: MTIcons.DEFAULT_REMOTE_PIC,
-                          width: 20,
-                          height: 20,
-                        ),
-                      ],
-                    ),
-                    GestureDetector(
-                      child: Icon(MTIcons.ATTENTION_LIGHT),
-                      onTap: () => _showStatusDialog(store),
-                    ),
-                  ],
+                        onTap: () => _showStatusDialog(store),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
