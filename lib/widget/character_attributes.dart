@@ -47,7 +47,7 @@ class CharacterAttributes extends StatelessWidget {
                       '$min/$max',
                       style: TextStyle(
                         fontSize: S.sp(12),
-                        color: Color(MTColors.DEFAULT_TEXT),
+                        color: Color(MTColors.LIGHT),
                       ),
                     ),
                   ),
